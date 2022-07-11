@@ -1,7 +1,7 @@
 version: '3'
 
 networks:
-  clipping:
+  bootcamp_ici:
 
 services:
   mongo:
@@ -9,7 +9,7 @@ services:
     ports:
       - 27017:27017
     networks:
-      - clipping
+      - bootcamp_ici
   
   rabbitmq:
     image: rabbitmq:3.9-management
@@ -17,4 +17,4 @@ services:
       - 5672:5672
       - 15672:15672
     networks:
-      - clipping
+      - bootcamp_ici

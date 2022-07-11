@@ -16,5 +16,11 @@ namespace NewsConsumer.API.Data
             var mongoDatabase = mongoClient.GetDatabase(settings.Value.DatabaseName);
             NewsCollection =  mongoDatabase.GetCollection<News>("News");
         }
+
+        public async Task<List<News>> GetAllAsync() => 
+            await NewsCollection.Find(_ => true).ToListAsync();
+
+        public async Task CreateAsync(News news) =>
+            await NewsCollection.InsertOneAsync(news);
     }
 }
