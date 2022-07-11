@@ -1,4 +1,4 @@
-using NewsConsumer.API.Data;
+using NewsConsumerAPI.Data;
 
 var builder = WebApplication.CreateBuilder(args);
 

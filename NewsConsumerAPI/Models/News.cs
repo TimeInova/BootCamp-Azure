@@ -2,7 +2,7 @@ using MongoDB.Bson;
 using MongoDB.Bson.Serialization.Attributes;
 using System.Text.Json.Serialization;
 
-namespace NewsConsumer.API.Models
+namespace NewsConsumerAPI.Models
 {
     public class News
     {
@@ -16,6 +16,7 @@ namespace NewsConsumer.API.Models
         [BsonRepresentation(BsonType.ObjectId)]
         [JsonIgnore]
         public string? Id {get; set;}
+        public string? IdTwitter {get; set;}
         public string? Text {get; set;}
         public DateTime DateCollect {get; set;}
 

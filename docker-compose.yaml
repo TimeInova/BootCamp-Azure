@@ -4,6 +4,16 @@ networks:
   bootcamp_ici:
 
 services:
+  newsconsumerapi:
+    build: ./NewsConsumerAPI
+    ports:
+      - 7003:80
+    networks:
+      - bootcamp_ici
+    environment:
+      - ASPNETCORE_ENVIRONMENT=Production
+      - ASPNETCORE_CandidateDatabase__ConnectionString=mongodb://mongo:27017
+      - ASPNETCORE_CandidateDatabase__DatabaseName=NewsConsumer
   mongo:
     image: mongo
     ports:

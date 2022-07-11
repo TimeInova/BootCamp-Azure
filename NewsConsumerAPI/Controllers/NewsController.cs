@@ -1,8 +1,8 @@
 using Microsoft.AspNetCore.Mvc;
-using NewsConsumer.API.Data;
-using NewsConsumer.API.Models;
+using NewsConsumerAPI.Data;
+using NewsConsumerAPI.Models;
 
-namespace NewsConsumer.API.Controllers
+namespace NewsConsumerAPI.Controllers
 {
     [ApiController]
     [Route("api")]
