@@ -1,7 +1,31 @@
 version: '1'
 
+networks:
+  clipping:
+
 services:
+  newsconsumerapi:
+    build: ./NewsConsumer.API
+    ports:
+      - 7003:80
+    networks:
+      - clipping
+    environment:
+      - ASPNETCORE_ENVIRONMENT=Production
+      - ASPNETCORE_CandidateDatabase__ConnectionString=mongodb://mongo:27017
+      - ASPNETCORE_CandidateDatabase__DatabaseName=News
+
   mongo:
     image: mongo
     ports:
       - 27017:27017
+    networks:
+      - clipping
+  
+  rabbitmq:
+    image: rabbitmq:3.9-management
+    ports:
+      - 5672:5672
+      - 15672:15672
+    networks:
+      - clipping
