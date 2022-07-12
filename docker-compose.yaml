@@ -4,6 +4,17 @@ networks:
   bootcamp_ici:
 
 services:
+  NewsConsumerproxy:
+    build: ./NewsConsumerProxy
+    ports:
+      - 81:80
+    networks:
+      - bootcamp_ici
+    environment:
+      - NEWSCONSUMERAPI_ADDRESS=http://newsconsumerapi
+    depends_on:
+      - newsconsumerapi
+
   newsconsumerapi:
     build: ./NewsConsumerAPI
     ports:
