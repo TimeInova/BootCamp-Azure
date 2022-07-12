@@ -2,10 +2,11 @@ using MongoDB.Driver;
 using Microsoft.Extensions.Options;
 using System.Security.Authentication;
 using NewsConsumerAPI.Models;
+using NewsConsumerAPI.Data.Interfaces;
 
 namespace NewsConsumerAPI.Data
 {
-    public class NewsRepository
+    public class NewsRepository : INewsRepository
     {
         private readonly IMongoCollection<News> NewsCollection;
 
@@ -17,10 +18,10 @@ namespace NewsConsumerAPI.Data
             NewsCollection =  mongoDatabase.GetCollection<News>("News");
         }
 
-        public async Task<List<News>> GetAllAsync() => 
-            await NewsCollection.Find(_ => true).ToListAsync();
-
         public async Task CreateAsync(News news) =>
             await NewsCollection.InsertOneAsync(news);
+        
+        public async Task<List<News>> GetAllAsync() => 
+            await NewsCollection.Find(_ => true).ToListAsync();
     }
 }

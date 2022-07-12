@@ -17,11 +17,6 @@ namespace NewsConsumerAPI.Controllers
             repository = _repository;
         }
 
-        //Rota de compartilhamento das noticias salvas no banco
-        [HttpGet("GetAllNews")]
-        public async Task<List<News>> Get() => 
-            await repository.GetAllAsync();
-
         //Rota de solicitação de atualização das noticias
         [HttpPost("UpdateNews")]
         //async Task<ActionResult>
@@ -35,6 +30,11 @@ namespace NewsConsumerAPI.Controllers
             return "rota em desenvolvimento";
             //return Ok();
         }
-        
+
+        //Rota de compartilhamento das noticias salvas no banco
+        [HttpGet("GetAllNews")]
+        public async Task<List<News>> Get() => 
+            await repository.GetAllAsync();
+
     }
 }
