@@ -1,26 +1,25 @@
-version: '1'
+version: '3'
 
 networks:
-  clipping:
+  bootcamp_ici:
 
 services:
   newsconsumerapi:
-    build: ./NewsConsumer.API
+    build: ./NewsConsumerAPI
     ports:
       - 7003:80
     networks:
-      - clipping
+      - bootcamp_ici
     environment:
       - ASPNETCORE_ENVIRONMENT=Production
       - ASPNETCORE_CandidateDatabase__ConnectionString=mongodb://mongo:27017
-      - ASPNETCORE_CandidateDatabase__DatabaseName=News
-
+      - ASPNETCORE_CandidateDatabase__DatabaseName=NewsConsumer
   mongo:
     image: mongo
     ports:
       - 27017:27017
     networks:
-      - clipping
+      - bootcamp_ici
   
   rabbitmq:
     image: rabbitmq:3.9-management
@@ -28,4 +27,4 @@ services:
       - 5672:5672
       - 15672:15672
     networks:
-      - clipping
+      - bootcamp_ici
