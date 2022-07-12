@@ -4,7 +4,7 @@ networks:
   bootcamp_ici:
 
 services:
-  NewsConsumerproxy:
+  newsconsumerproxy:
     build: ./NewsConsumerProxy
     ports:
       - 81:80
