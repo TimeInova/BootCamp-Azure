@@ -12,8 +12,11 @@ services:
       - bootcamp_ici
     environment:
       - ASPNETCORE_ENVIRONMENT=Production
-      - ASPNETCORE_CandidateDatabase__ConnectionString=mongodb://mongo:27017
-      - ASPNETCORE_CandidateDatabase__DatabaseName=NewsConsumer
+      - ASPNETCORE_NewsConsumerDatabase__ConnectionString=mongodb://mongo:27017
+      - ASPNETCORE_NewsConsumerDatabase__DatabaseName=NewsConsumer
+    depends_on:
+      - mongo
+
   mongo:
     image: mongo
     ports:
