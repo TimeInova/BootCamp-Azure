@@ -6,11 +6,8 @@ RUN dotnet restore
 
 COPY . ./
 
-# TODO: Ajustar string de conexão para utilização com do container do banco
-# RUN rm appsettings.json
-# RUN rm appsettings.Development.json
-# RUN mv appsettings.Docker.json appsettings.json
-# RUN mv appsettings.Docker.Development.json appsettings.Development.json
+RUN rm appsettings.json
+RUN mv appsettings.Docker.json appsettings.json
 
 RUN dotnet publish -c Release -o out
 
