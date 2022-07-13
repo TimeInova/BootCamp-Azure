@@ -5,7 +5,7 @@ networks:
 
 services:
   newsconsumerproxy:
-    build: ./NewsConsumerProxy
+    build: ./NewsConsumerAPI/NewsConsumerProxy
     ports:
       - 80:80
     networks:
