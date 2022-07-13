@@ -1,10 +1,10 @@
 using MongoDB.Driver;
 using Microsoft.Extensions.Options;
 using System.Security.Authentication;
-using NewsConsumerAPI.Models;
-using NewsConsumerAPI.Data.Interfaces;
+using API.Models;
+using API.Data.Interfaces;
 
-namespace NewsConsumerAPI.Data
+namespace API.Data
 {
     public class NewsRepository : INewsRepository
     {

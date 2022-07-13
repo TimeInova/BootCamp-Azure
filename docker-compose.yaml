@@ -5,7 +5,7 @@ networks:
 
 services:
   newsconsumerproxy:
-    build: ./NewsConsumerAPI/NewsConsumerProxy
+    build: ./NewsConsumer/Proxy
     ports:
       - 80:80
     networks:
@@ -16,7 +16,7 @@ services:
       - newsconsumerapi
 
   newsconsumerapi:
-    build: ./NewsConsumerAPI
+    build: ./NewsConsumer/API
     networks:
       - bootcamp_ici
     environment:
