@@ -4,7 +4,9 @@ namespace API.Data.Interfaces
 {
     public interface INewsRepository
     {
-        public Task<List<News>> GetAllAsync();
-        public Task CreateAsync(News news);
+        public Task SaveClippingNewsAsync(IEnumerable<News> news);
+        public Task SaveClippingCommentsAsync(IEnumerable<Comments> comments);
+        public Task<List<News>> GetAllNewsAsync();
+        public Task<List<Comments>> GetAllComentsAsync();
     }
 }

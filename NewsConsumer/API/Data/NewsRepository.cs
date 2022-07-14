@@ -9,6 +9,7 @@ namespace API.Data
     public class NewsRepository : INewsRepository
     {
         private readonly IMongoCollection<News> NewsCollection;
+        private readonly IMongoCollection<Comments> CommentsCollection;
 
         public NewsRepository(IOptions<NewsConsumerDbSettings> settings){        
             MongoClientSettings settingsMongo = MongoClientSettings.FromUrl(new MongoUrl(settings.Value.ConnectionString));
@@ -16,12 +17,19 @@ namespace API.Data
             var mongoClient = new MongoClient(settings.Value.ConnectionString);
             var mongoDatabase = mongoClient.GetDatabase(settings.Value.DatabaseName);
             NewsCollection =  mongoDatabase.GetCollection<News>("News");
+            CommentsCollection = mongoDatabase.GetCollection<Comments>("Comments");
         }
 
-        public async Task CreateAsync(News news) =>
-            await NewsCollection.InsertOneAsync(news);
-        
-        public async Task<List<News>> GetAllAsync() => 
+        public async Task SaveClippingNewsAsync(IEnumerable<News> news) =>
+            await NewsCollection.InsertManyAsync(news);
+
+        public async Task SaveClippingCommentsAsync(IEnumerable<Comments> comments) =>
+            await CommentsCollection.InsertManyAsync(comments);
+
+        public async Task<List<News>> GetAllNewsAsync() => 
             await NewsCollection.Find(_ => true).ToListAsync();
+        
+        public async Task<List<Comments>> GetAllComentsAsync() => 
+            await  CommentsCollection.Find(_ => true).ToListAsync();
     }
 }
