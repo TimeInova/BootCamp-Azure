@@ -6,12 +6,12 @@ using API.Data.Interfaces;
 
 namespace API.Data
 {
-    public class NewsRepository : INewsRepository
+    public class ClippingRepository : IClippingRepository
     {
         private readonly IMongoCollection<News> NewsCollection;
         private readonly IMongoCollection<Comments> CommentsCollection;
 
-        public NewsRepository(IOptions<NewsConsumerDbSettings> settings){        
+        public ClippingRepository(IOptions<NewsConsumerDbSettings> settings){        
             MongoClientSettings settingsMongo = MongoClientSettings.FromUrl(new MongoUrl(settings.Value.ConnectionString));
             settingsMongo.SslSettings = new SslSettings() { EnabledSslProtocols = SslProtocols.Tls12 };
             var mongoClient = new MongoClient(settings.Value.ConnectionString);

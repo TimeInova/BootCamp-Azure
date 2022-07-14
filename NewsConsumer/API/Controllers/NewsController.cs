@@ -9,9 +9,9 @@ namespace API.Controllers
     public class NewsController
     {
         private readonly ILogger<NewsController> logger;
-        private readonly NewsRepository repository;
+        private readonly ClippingRepository repository;
 
-        public NewsController(NewsRepository _repository, ILogger<NewsController> _logger)
+        public NewsController(ClippingRepository _repository, ILogger<NewsController> _logger)
         {
             logger = _logger;
             repository = _repository;

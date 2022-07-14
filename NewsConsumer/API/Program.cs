@@ -10,7 +10,7 @@ builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
 builder.Services.Configure<NewsConsumerDbSettings>(builder.Configuration.GetSection("NewsConsumerDatabase"));
 
-builder.Services.AddSingleton<NewsRepository>();
+builder.Services.AddSingleton<ClippingRepository>();
 
 var app = builder.Build();
 
