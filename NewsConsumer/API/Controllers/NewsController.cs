@@ -9,11 +9,11 @@ namespace API.Controllers
     [Route("api")]
     public class NewsController
     {
-        //private readonly ClippingQueue queue; ClippingQueue _queue, 
+        //private readonly ClippingQueue queue;
         private readonly ILogger<NewsController> logger;
         private readonly ClippingRepository repository;
 
-        public NewsController(ClippingRepository _repository, ILogger<NewsController> _logger)
+        public NewsController(ClippingRepository _repository, ILogger<NewsController> _logger) // ClippingQueue _queue, 
         {
             //queue = _queue;
             repository = _repository;
