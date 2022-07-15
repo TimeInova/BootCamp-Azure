@@ -2,9 +2,9 @@ using MongoDB.Bson;
 using MongoDB.Bson.Serialization.Attributes;
 using System.Text.Json.Serialization;
 
-namespace API.Models
+namespace ClippingWorker.Models
 {
-    public class Comments
+    public class News
     {
         [BsonId]
         [BsonRepresentation(BsonType.ObjectId)]
@@ -12,5 +12,7 @@ namespace API.Models
         public string? Id {get; set;}
         public string? IdTwitter {get; set;}
         public string? Text {get; set;}
+        public DateTime DateCollect {get; set;}
+
     }
 }

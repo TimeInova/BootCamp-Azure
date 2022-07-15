@@ -21,10 +21,24 @@ services:
       - bootcamp_ici
     environment:
       - ASPNETCORE_ENVIRONMENT=Production
-      - ASPNETCORE_NewsConsumerDatabase__ConnectionString=mongodb://mongo:27017
+      - ASPNETCORE_RabbitMQ=rabbitmq
       - ASPNETCORE_NewsConsumerDatabase__DatabaseName=NewsConsumer
+      - ASPNETCORE_NewsConsumerDatabase__ConnectionString=mongodb://mongo:27017
     depends_on:
       - mongo
+  
+  clippingworker:
+    build: ./NewsConsumer/ClippingWorker
+    networks:
+      - bootcamp_ici
+    environment:
+      - DOTNET_ENVIRONMENT=Production
+      - DOTNET_RabbitMQ=rabbitmq
+      - DOTNET_NewsConsumerDatabase__DatabaseName=NewsConsumer
+      - DOTNET_NewsConsumerDatabase__ConnectionString=mongodb://mongo:27017
+    deploy:
+      restart_policy:
+        condition: on-failure
 
   mongo:
     image: mongo

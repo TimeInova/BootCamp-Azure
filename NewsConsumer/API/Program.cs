@@ -8,7 +8,7 @@ builder.Services.AddControllers();
 // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
-builder.Services.Configure<NewsConsumerDbSettings>(builder.Configuration.GetSection("NewsConsumerDatabase"));
+builder.Services.Configure<ClippingDbSettings>(builder.Configuration.GetSection("NewsConsumerDatabase"));
 
 builder.Services.AddSingleton<ClippingRepository>();
 

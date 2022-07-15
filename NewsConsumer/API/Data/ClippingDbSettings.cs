@@ -1,6 +1,6 @@
 namespace API.Data
 {
-    public class NewsConsumerDbSettings {
+    public class ClippingDbSettings {
         public string? ConnectionString { get; set;} = null;
         public string? DatabaseName { get; set;} = null;
     }
