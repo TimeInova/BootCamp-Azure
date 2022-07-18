@@ -12,5 +12,6 @@ namespace ClippingWorker.Models
         public string? Id {get; set;}
         public string? IdTwitter {get; set;}
         public string? Text {get; set;}
+        public DateTime DateCollect {get; set;}
     }
 }

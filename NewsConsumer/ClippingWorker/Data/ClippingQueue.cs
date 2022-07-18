@@ -55,6 +55,5 @@ namespace ClippingWorker.Data
         public void ReceiveComments(){
             this.channel.BasicConsume("comments", true, consumer);        
         }
-
     }
 }
