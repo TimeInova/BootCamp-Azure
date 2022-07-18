@@ -17,6 +17,8 @@ services:
 
   newsconsumerapi:
     build: ./NewsConsumer/API
+    ports:
+      - 7003:80 
     networks:
       - bootcamp_ici
     environment:
