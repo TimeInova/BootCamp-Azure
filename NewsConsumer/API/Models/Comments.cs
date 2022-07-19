@@ -1,8 +1,8 @@
 namespace API.Models
 {
-    public class CommentsMessage
+    public class Comments
     {
-        public CommentsMessage()
+        public Comments()
         {
             DateCollect = DateTime.Now;
         }

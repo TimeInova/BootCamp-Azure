@@ -29,10 +29,10 @@ namespace API.Controllers
             var newsTwitter = "rota em desenvolvimento"; //Aqui é a chamada para a api do twitter
             
             //Segunda etapa - Fazer o Deserialize dos dados
-            //IEnumerable<NewsMessage>? message = JsonSerializer.Deserialize<IEnumerable<NewsMessage>>(newsTwitter);
+            //IEnumerable<News>? news = JsonSerializer.Deserialize<IEnumerable<News>>(newsTwitter);
             
-            //Enviar para o Worker com RabbitMQ
-            //queue.sendNews(message);
+            //Terceira etapa - Salvar no banco
+            //repository.SaveClippingNews(news);
             
             return newsTwitter;
             //return Ok();
@@ -47,23 +47,23 @@ namespace API.Controllers
             var commentsTwitter = "rota em desenvolvimento"; //Aqui é a chamada para a api do twitter
             
             //Segunda etapa - Fazer o Deserialize dos dados
-            //IEnumerable<CommentsMessage>? message = JsonSerializer.Deserialize<IEnumerable<CommentsMessage>>(commentsTwitter);
+            //IEnumerable<Comments>? comments = JsonSerializer.Deserialize<IEnumerable<Comments>>(commentsTwitter);
             
-            //Enviar para o Worker com RabbitMQ
-            //queue.sendComments(message);
-            
+            //Terceira etapa - Salvar no banco
+            //await repository.SaveClippingComments(comments);
+
             return commentsTwitter;
             //return Ok();
         }
 
         //Rota de compartilhamento das noticias salvas no banco
         [HttpGet("GetAllNews")]
-        public async Task<List<NewsMessage>> GetAllNews() => 
+        public async Task<IEnumerable<News>> GetAllNews() => 
             await repository.GetAllNewsAsync();
         
         //Rota de compartilhamento de comentarios salvos no banco
         [HttpGet("GetAllComments")]
-        public async Task<List<CommentsMessage>> GetAllComents() => 
+        public async Task<IEnumerable<Comments>> GetAllComents() => 
             await repository.GetAllComentsAsync();
     }
 }

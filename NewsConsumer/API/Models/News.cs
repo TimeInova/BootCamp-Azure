@@ -1,8 +1,8 @@
 namespace API.Models
 {
-    public class NewsMessage
+    public class News
     {
-        public NewsMessage()
+        public News()
         {
             DateCollect = DateTime.Now;
         }

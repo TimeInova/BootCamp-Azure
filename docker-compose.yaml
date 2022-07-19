@@ -17,42 +17,18 @@ services:
 
   newsconsumerapi:
     build: ./NewsConsumer/API
-    ports:
-      - 7003:80 
     networks:
       - bootcamp_ici
     environment:
       - ASPNETCORE_ENVIRONMENT=Production
-      - ASPNETCORE_RabbitMQ=rabbitmq
       - ASPNETCORE_NewsConsumerDatabase__DatabaseName=NewsConsumer
       - ASPNETCORE_NewsConsumerDatabase__ConnectionString=mongodb://mongo:27017
     depends_on:
       - mongo
-  
-  clippingworker:
-    build: ./NewsConsumer/ClippingWorker
-    networks:
-      - bootcamp_ici
-    environment:
-      - DOTNET_ENVIRONMENT=Production
-      - DOTNET_RabbitMQ=rabbitmq
-      - DOTNET_NewsConsumerDatabase__DatabaseName=NewsConsumer
-      - DOTNET_NewsConsumerDatabase__ConnectionString=mongodb://mongo:27017
-    deploy:
-      restart_policy:
-        condition: on-failure
 
   mongo:
     image: mongo
     ports:
       - 27017:27017
-    networks:
-      - bootcamp_ici
-  
-  rabbitmq:
-    image: rabbitmq:3.9-management
-    ports:
-      - 5672:5672
-      - 15672:15672
     networks:
       - bootcamp_ici
