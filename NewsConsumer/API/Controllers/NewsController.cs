@@ -1,7 +1,4 @@
 using Microsoft.AspNetCore.Mvc;
-using System.Text.Json;
-using API.Data;
-using API.Models;
 using NewsConsumerAPI.Data.Interfaces;
 using API.Data.Interfaces;
 using NewsConsumerAPI.Models;
@@ -37,9 +34,9 @@ namespace API.Controllers
 
 				if (tweets != null && tweets.Data != null)
 				{
-					var messages = tweets!.Data.Select(x => new NewsMessage(x)).ToList();
+					var messages = tweets!.Data.Select(x => new News(x)).ToList();
 
-					await repository.InsertAllAsync(messages);
+					await repository.SaveClippingNews(messages);
 
 					return Ok(tweets!.Data);
 				}

@@ -3,13 +3,10 @@ using MongoDB.Bson.Serialization.Attributes;
 
 namespace NewsConsumerAPI.Models
 {
-    public class NewsMessage
+    public class Comments
     {
-        public NewsMessage(TweetData data)
+        public Comments()
         {
-
-			IdTwitter = data.Id;
-			Text = data.Text;
             DateCollect = DateTime.Now;
         }
 
