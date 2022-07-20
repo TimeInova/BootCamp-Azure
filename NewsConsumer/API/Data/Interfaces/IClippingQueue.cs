@@ -1,4 +1,5 @@
 using API.Models;
+using NewsConsumerAPI.Models;
 
 namespace API.Data.Interfaces
 {

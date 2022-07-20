@@ -3,6 +3,7 @@ using System.Text.Json;
 using System.Text;
 using API.Data.Interfaces;
 using API.Models;
+using NewsConsumerAPI.Models;
 
 namespace API.Data
 {

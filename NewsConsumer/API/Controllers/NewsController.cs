@@ -2,68 +2,71 @@ using Microsoft.AspNetCore.Mvc;
 using System.Text.Json;
 using API.Data;
 using API.Models;
+using NewsConsumerAPI.Data.Interfaces;
+using API.Data.Interfaces;
+using NewsConsumerAPI.Models;
 
 namespace API.Controllers
 {
     [ApiController]
     [Route("api")]
-    public class NewsController
+    public class NewsController : ControllerBase
     {
         //private readonly ClippingQueue queue;
         private readonly ILogger<NewsController> logger;
-        private readonly ClippingRepository repository;
+		private readonly ITwitterService twitterService;
+		private readonly IClippingRepository repository;
 
-        public NewsController(ClippingRepository _repository, ILogger<NewsController> _logger) // ClippingQueue _queue, 
+		public NewsController(ILogger<NewsController> _logger, 
+			ITwitterService twitterService, 
+			IClippingRepository clippingRepository) // ClippingQueue _queue, 
         {
             //queue = _queue;
-            repository = _repository;
             logger = _logger;
-        }
+			this.twitterService = twitterService;
+			this.repository = clippingRepository;
+		}
 
         //Rota de solicitação de atualização das noticias
         [HttpPost("UpdateNews")]
-        //async Task<ActionResult>
-        public string ClippingNews() 
+        public async Task<IActionResult> ClippingNews(int? maxResults = 10) 
         {
-            //Primeira etapa - chamar a api do twitter para baixar as noticias
-            var newsTwitter = "rota em desenvolvimento"; //Aqui é a chamada para a api do twitter
-            
-            //Segunda etapa - Fazer o Deserialize dos dados
-            //IEnumerable<NewsMessage>? message = JsonSerializer.Deserialize<IEnumerable<NewsMessage>>(newsTwitter);
-            
-            //Enviar para o Worker com RabbitMQ
-            //queue.sendNews(message);
-            
-            return newsTwitter;
-            //return Ok();
-        }
+			try
+			{
+				var tweets = await twitterService.GetTweets(maxResults);
 
-        //Rota de solicitação de atualização de comentarios
-        [HttpPost("UpdateComments")]
-        //async Task<ActionResult>
-        public string ClippingComments() 
-        { 
-            //Primeira etapa - chamar a api do twitter para baixar as noticias
-            var commentsTwitter = "rota em desenvolvimento"; //Aqui é a chamada para a api do twitter
-            
-            //Segunda etapa - Fazer o Deserialize dos dados
-            //IEnumerable<CommentsMessage>? message = JsonSerializer.Deserialize<IEnumerable<CommentsMessage>>(commentsTwitter);
-            
-            //Enviar para o Worker com RabbitMQ
-            //queue.sendComments(message);
-            
-            return commentsTwitter;
-            //return Ok();
-        }
+				if (tweets != null && tweets.Data != null)
+				{
+					var messages = tweets!.Data.Select(x => new NewsMessage(x)).ToList();
 
-        //Rota de compartilhamento das noticias salvas no banco
-        [HttpGet("GetAllNews")]
-        public async Task<List<NewsMessage>> GetAllNews() => 
-            await repository.GetAllNewsAsync();
-        
-        //Rota de compartilhamento de comentarios salvos no banco
-        [HttpGet("GetAllComments")]
-        public async Task<List<CommentsMessage>> GetAllComents() => 
-            await repository.GetAllComentsAsync();
-    }
+					await repository.InsertAllAsync(messages);
+
+					return Ok(tweets!.Data);
+				}
+
+				return NoContent();
+			}
+			catch (Exception e)
+			{
+				return BadRequest(e);
+			}
+
+		}
+
+		//Rota de compartilhamento das noticias salvas no banco
+		[HttpGet("GetAllNews")]
+		public async Task<IActionResult> GetAllNews(int? maxResults = 10)
+		{
+			try
+			{
+				return Ok(await repository.GetAllNewsAsync(maxResults));
+			}
+			catch (Exception e)
+			{
+				return BadRequest(e);
+			}
+		}
+
+
+	}
 }
