@@ -1,5 +1,5 @@
 ﻿using API.Data.Interfaces;
-using API.Models;
+using API.DTO;
 using Newtonsoft.Json;
 using System.Net.Http.Headers;
 using System.Text.Json;

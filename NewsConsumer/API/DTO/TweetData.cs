@@ -1,4 +1,4 @@
-﻿namespace API.Models
+﻿namespace API.DTO
 {
 	public class TweetData
 	{

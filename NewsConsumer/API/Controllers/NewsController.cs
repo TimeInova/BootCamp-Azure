@@ -1,5 +1,6 @@
 using Microsoft.AspNetCore.Mvc;
 using API.Models;
+using API.DTO;
 using API.Data.Interfaces;
 
 namespace API.Controllers
@@ -8,7 +9,6 @@ namespace API.Controllers
     [Route("api")]
     public class NewsController : ControllerBase
     {
-        //private readonly ClippingQueue queue;
         private readonly ILogger<NewsController> logger;
 		private readonly ITwitterService twitterService;
 		private readonly IClippingRepository repository;

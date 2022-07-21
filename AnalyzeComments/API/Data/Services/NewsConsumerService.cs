@@ -1,6 +1,6 @@
 using Newtonsoft.Json;
 using API.Data.Interfaces;
-using API.Models;
+using API.DTO;
 
 namespace API.Data.Services
 {
