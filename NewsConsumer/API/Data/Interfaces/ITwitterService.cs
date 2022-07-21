@@ -1,6 +1,6 @@
-﻿using NewsConsumerAPI.Models;
+﻿using API.Models;
 
-namespace NewsConsumerAPI.Data.Interfaces
+namespace API.Data.Interfaces
 {
 	public interface ITwitterService
 	{

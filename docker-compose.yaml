@@ -26,6 +26,28 @@ services:
     depends_on:
       - mongo
 
+  analyzecommentsproxy:
+    build: ./AnalyzeComments/Proxy
+    ports:
+      - 81:81
+    networks:
+      - bootcamp_ici
+    environment:
+      - ANALYZECOMMENTSAPI_ADDRESS=http://analyzecommentsapi
+    depends_on:
+      - analyzecommentsapi
+
+  analyzecommentsapi:
+    build: ./AnalyzeComments/API
+    networks:
+      - bootcamp_ici
+    environment:
+      - ASPNETCORE_ENVIRONMENT=Production
+      - ASPNETCORE_AnalyzeCommentsDatabase__DatabaseName=AnalyzeComments
+      - ASPNETCORE_AnalyzeCommentsDatabase__ConnectionString=mongodb://mongo:27017
+    depends_on:
+      - mongo
+
   mongo:
     image: mongo
     ports:

@@ -1,10 +1,10 @@
-﻿using NewsConsumerAPI.Data.Interfaces;
-using NewsConsumerAPI.Models;
+﻿using API.Data.Interfaces;
+using API.Models;
 using Newtonsoft.Json;
 using System.Net.Http.Headers;
 using System.Text.Json;
 
-namespace NewsConsumerAPI.Data
+namespace API.Data.Services
 {
 	public class TwitterService : ITwitterService
 	{

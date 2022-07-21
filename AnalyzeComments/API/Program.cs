@@ -1,6 +1,5 @@
 using API.Data;
 using API.Data.Repository;
-using API.Data.Services;
 using API.Data.Interfaces;
 
 var builder = WebApplication.CreateBuilder(args);
@@ -12,12 +11,10 @@ builder.Services.AddHttpClient();
 // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
-builder.Services.Configure<ClippingDbSettings>(builder.Configuration.GetSection("NewsConsumerDatabase"));
+builder.Services.Configure<AnalyzeDbSettings>(builder.Configuration.GetSection("ResultAnalyzeDatabase"));
 
-builder.Services.AddSingleton<ClippingRepository>();
-builder.Services.AddScoped<ITwitterService, TwitterService>();
-builder.Services.AddScoped<IClippingRepository, ClippingRepository>();
-
+builder.Services.AddSingleton<AnalyzeRepository>();
+builder.Services.AddScoped<IAnalyzeRepository, AnalyzeRepository>();
 
 var app = builder.Build();
 

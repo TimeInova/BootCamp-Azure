@@ -3,21 +3,19 @@ using MongoDB.Bson.Serialization.Attributes;
 
 namespace API.Models
 {
-    public class News
+    public class ResultAnalyze
     {
-        public News(TweetData data)
+        public ResultAnalyze()
         {
-			IdTwitter = data.Id;
-			Text = data.Text;
-			DateCollect = DateTime.Now;
+            DateCollect = DateTime.Now;
         }
 
-
-		[BsonId]
+        [BsonId]
 		[BsonRepresentation(BsonType.ObjectId)]
 		public string? Id { get; set; }
-		public string? IdTwitter {get; set;}
-        public string? Text {get; set;}
+
+        //Entender estrutura do resultado da analyze para definir models
+        
         public DateTime DateCollect {get; set;}
     }
 }

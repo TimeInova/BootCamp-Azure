@@ -1,7 +1,6 @@
 using Microsoft.AspNetCore.Mvc;
-using NewsConsumerAPI.Data.Interfaces;
+using API.Models;
 using API.Data.Interfaces;
-using NewsConsumerAPI.Models;
 
 namespace API.Controllers
 {
@@ -14,12 +13,12 @@ namespace API.Controllers
 		private readonly ITwitterService twitterService;
 		private readonly IClippingRepository repository;
 
-		public NewsController(ILogger<NewsController> _logger, 
+		public NewsController(ILogger<NewsController> logger, 
 			ITwitterService twitterService, 
-			IClippingRepository clippingRepository) // ClippingQueue _queue, 
+			IClippingRepository clippingRepository)
         {
-            //queue = _queue;
-            logger = _logger;
+
+            this.logger = logger;
 			this.twitterService = twitterService;
 			this.repository = clippingRepository;
 		}
@@ -51,7 +50,7 @@ namespace API.Controllers
 		}
 
 		//Rota de compartilhamento das noticias salvas no banco
-		[HttpGet("GetAllNews")]
+		[HttpGet("GetNews")]
 		public async Task<IActionResult> GetAllNews(int? maxResults = 10)
 		{
 			try

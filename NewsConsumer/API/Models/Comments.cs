@@ -1,7 +1,7 @@
 using MongoDB.Bson;
 using MongoDB.Bson.Serialization.Attributes;
 
-namespace NewsConsumerAPI.Models
+namespace API.Models
 {
     public class Comments
     {

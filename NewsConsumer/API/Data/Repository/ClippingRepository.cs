@@ -2,9 +2,9 @@ using MongoDB.Driver;
 using Microsoft.Extensions.Options;
 using System.Security.Authentication;
 using API.Data.Interfaces;
-using NewsConsumerAPI.Models;
+using API.Models;
 
-namespace API.Data
+namespace API.Data.Repository
 {
     public class ClippingRepository : IClippingRepository
     {

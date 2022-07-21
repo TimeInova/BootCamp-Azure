@@ -1,4 +1,4 @@
-﻿namespace NewsConsumerAPI.Models
+﻿namespace API.Models
 {
 	public class TweetData
 	{

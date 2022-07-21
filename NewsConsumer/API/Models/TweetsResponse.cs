@@ -1,7 +1,7 @@
-﻿namespace NewsConsumerAPI.Models
+﻿namespace API.Models
 {
 	public class TweetsResponse
 	{
-		public IEnumerable<TweetData> Data { get; set; }
+		public IEnumerable<TweetData>? Data { get; set; }
 	}
 }

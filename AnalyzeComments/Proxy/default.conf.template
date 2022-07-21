@@ -1,0 +1,11 @@
+server {
+    listen       81;
+    listen  [::]:81;
+    server_name  localhost;
+
+    location / {
+        proxy_ssl_session_reuse off;
+        proxy_ssl_server_name on;
+        proxy_pass ${ANALYZECOMMENTSAPI_ADDRESS};
+    }
+}
