@@ -45,6 +45,7 @@ services:
       - ASPNETCORE_ENVIRONMENT=Production
       - ASPNETCORE_AnalyzeCommentsDatabase__DatabaseName=AnalyzeComments
       - ASPNETCORE_AnalyzeCommentsDatabase__ConnectionString=mongodb://mongo:27017
+      - ASPNETCORE_Integrations__NewsConsumerAddress=http://localhost/api/GetComments
     depends_on:
       - mongo
 

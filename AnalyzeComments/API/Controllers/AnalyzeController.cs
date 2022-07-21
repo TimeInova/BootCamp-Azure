@@ -1,5 +1,5 @@
 using Microsoft.AspNetCore.Mvc;
-using API.Models;
+using API.Data.Services;
 using API.Data.Interfaces;
 
 namespace API.Controllers
@@ -10,24 +10,34 @@ namespace API.Controllers
     {
         private readonly ILogger<AnalyzeController> logger;
         private readonly IAnalyzeRepository repository;
+        private readonly INewsConsumerService newsConsumerService;
 
-        public AnalyzeController(ILogger<AnalyzeController> logger, IAnalyzeRepository repository)
+        public AnalyzeController(ILogger<AnalyzeController> logger, 
+                                 IAnalyzeRepository repository,
+                                 INewsConsumerService newsConsumerService)
         {
             this.logger = logger;
             this.repository = repository;
+            this.newsConsumerService = newsConsumerService;
         }
 
         [HttpPost("UpdateAnalyzes")]
         //async Task<IActionResult>
-        public string UpdateAnalyzes()
+        public string UpdateAnalyzes(int? maxResults)
         {
-            //var comments = AQUI A INTEGRAÇÃ COM A API DE CLIPPING 
-            //var resultAnalyzes = AQUI A INTEGRAÇÃO COM A API DE ANALISE DA AZURE
-            
-            return "Rota em desenvolvimento";
+            try
+            {
+                var comments = newsConsumerService.GetComments(maxResults);
+                //var resultAnalyze = AQUI A INTEGRAÇÃO COM A API DE ANALISE DA AZURE
+                //await repository.SaveResultAnalyze(resultAnalyze);
+
+                return "Rota em desenvolvimento";   
+            }
+            catch (System.Exception)
+            {
+                throw;
+            }
         }
-
-
 
         [HttpGet("GetAnalyzes")]
         public async Task<IActionResult> GetAllAnayzes(int? maxResults = 10)

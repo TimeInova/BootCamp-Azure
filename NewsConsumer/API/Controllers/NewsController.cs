@@ -49,6 +49,16 @@ namespace API.Controllers
 
 		}
 
+		 //Rota de solicitação de atualização dos comentarios
+        [HttpPost("UpdateComments")]
+        //async Task<IActionResult>
+		public string ClippingComments(int? maxResults = 10) 
+        {
+			var tweetsComments = "Rota em desenvolvimento"; //Aqui vai a integração para pegar comentários do twitter que mencionam "Prefeitura de Curitiba" 
+			
+			return tweetsComments;
+		}
+
 		//Rota de compartilhamento das noticias salvas no banco
 		[HttpGet("GetNews")]
 		public async Task<IActionResult> GetAllNews(int? maxResults = 10)
@@ -56,6 +66,20 @@ namespace API.Controllers
 			try
 			{
 				return Ok(await repository.GetAllNewsAsync(maxResults));
+			}
+			catch (Exception e)
+			{
+				return BadRequest(e);
+			}
+		}
+
+		//Rota de compartilhamento dos comentarios salvos no banco
+		[HttpGet("GetComments")]
+		public async Task<IActionResult> GetAllComments(int? maxResults = 10)
+		{
+			try
+			{
+				return Ok(await repository.GetAllComentsAsync(maxResults));
 			}
 			catch (Exception e)
 			{
