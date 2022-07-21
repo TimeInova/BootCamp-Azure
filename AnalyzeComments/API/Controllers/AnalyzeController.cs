@@ -13,8 +13,8 @@ namespace API.Controllers
         private readonly INewsConsumerService newsConsumerService;
 
         public AnalyzeController(ILogger<AnalyzeController> logger, 
-                                 IAnalyzeRepository repository,
-                                 INewsConsumerService newsConsumerService)
+            IAnalyzeRepository repository,
+            INewsConsumerService newsConsumerService)
         {
             this.logger = logger;
             this.repository = repository;

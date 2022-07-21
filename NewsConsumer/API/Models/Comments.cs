@@ -1,3 +1,4 @@
+using API.DTO;
 using MongoDB.Bson;
 using MongoDB.Bson.Serialization.Attributes;
 
@@ -5,8 +6,10 @@ namespace API.Models
 {
     public class Comments
     {
-        public Comments()
+        public Comments(TweetData data)
         {
+            IdTwitter = data.Id;
+			Text = data.Text;
             DateCollect = DateTime.Now;
         }
 

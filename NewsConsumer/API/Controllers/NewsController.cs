@@ -1,6 +1,5 @@
 using Microsoft.AspNetCore.Mvc;
 using API.Models;
-using API.DTO;
 using API.Data.Interfaces;
 
 namespace API.Controllers
@@ -17,7 +16,6 @@ namespace API.Controllers
 			ITwitterService twitterService, 
 			IClippingRepository clippingRepository)
         {
-
             this.logger = logger;
 			this.twitterService = twitterService;
 			this.repository = clippingRepository;
@@ -51,12 +49,25 @@ namespace API.Controllers
 
 		 //Rota de solicitação de atualização dos comentarios
         [HttpPost("UpdateComments")]
-        //async Task<IActionResult>
-		public string ClippingComments(int? maxResults = 10) 
+		public async Task<IActionResult> ClippingComments(int? maxResults = 100) 
         {
-			var tweetsComments = "Rota em desenvolvimento"; //Aqui vai a integração para pegar comentários do twitter que mencionam "Prefeitura de Curitiba" 
-			
-			return tweetsComments;
+			try
+			{
+				var tweetsComments = await twitterService.GetTweetsComments(maxResults);
+				if (tweetsComments != null && tweetsComments.Data != null)
+				{
+					var comments = tweetsComments!.Data.Select(x => new Comments(x)).ToList();
+					await repository.SaveClippingComments(comments);
+					
+					return Ok(tweetsComments!.Data);
+				}
+				
+				return NoContent();
+			}
+			catch (Exception e)
+			{
+				return BadRequest(e);
+			}
 		}
 
 		//Rota de compartilhamento das noticias salvas no banco
