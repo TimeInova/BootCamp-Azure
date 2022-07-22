@@ -1,6 +1,7 @@
 using API.Data;
 using API.Data.Repository;
 using API.Data.Interfaces;
+using API.Data.Services;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -14,7 +15,9 @@ builder.Services.AddSwaggerGen();
 builder.Services.Configure<AnalyzeDbSettings>(builder.Configuration.GetSection("ResultAnalyzeDatabase"));
 
 builder.Services.AddSingleton<AnalyzeRepository>();
+builder.Services.AddSingleton<NewsConsumerService>();
 builder.Services.AddScoped<IAnalyzeRepository, AnalyzeRepository>();
+builder.Services.AddScoped<INewsConsumerService, NewsConsumerService>();
 
 var app = builder.Build();
 

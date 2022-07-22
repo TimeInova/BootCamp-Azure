@@ -30,16 +30,8 @@ namespace API.Data.Repository
 			return await query.ToListAsync();
 		}
 
-		public async Task<List<Comments>> GetAllComentsAsync(int? maxResults)
-		{
-			var query = commentsCollection.Find(_ => true);
-
-			if (maxResults.HasValue)
-				query.Limit(maxResults);
-
-			return await query.ToListAsync();
-		}
-
+		public async Task<List<Comments>> GetAllComentsAsync() => 
+			await commentsCollection.Find(_ => true).ToListAsync();
 
 		public async Task SaveClippingNews(List<News> news)
 		{

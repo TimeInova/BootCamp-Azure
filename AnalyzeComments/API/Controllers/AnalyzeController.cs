@@ -22,20 +22,19 @@ namespace API.Controllers
         }
 
         [HttpPost("UpdateAnalyzes")]
-        //async Task<IActionResult>
-        public string UpdateAnalyzes(int? maxResults)
+        public async Task<IActionResult> UpdateAnalyzes()
         {
             try
             {
-                var comments = newsConsumerService.GetComments(maxResults);
+                var comments = await newsConsumerService.GetComments();
                 //var resultAnalyze = AQUI A INTEGRAÇÃO COM A API DE ANALISE DA AZURE
                 //await repository.SaveResultAnalyze(resultAnalyze);
 
-                return "Rota em desenvolvimento";   
+                return Ok(comments);   
             }
-            catch (System.Exception)
+            catch (Exception e)
             {
-                throw;
+                return BadRequest(e);
             }
         }
 

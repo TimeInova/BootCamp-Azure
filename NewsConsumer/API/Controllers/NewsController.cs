@@ -49,7 +49,7 @@ namespace API.Controllers
 
 		 //Rota de solicitação de atualização dos comentarios
         [HttpPost("UpdateComments")]
-		public async Task<IActionResult> ClippingComments(int? maxResults = 100) 
+		public async Task<IActionResult> ClippingComments(int? maxResults = 50) 
         {
 			try
 			{
@@ -86,11 +86,11 @@ namespace API.Controllers
 
 		//Rota de compartilhamento dos comentarios salvos no banco
 		[HttpGet("GetComments")]
-		public async Task<IActionResult> GetAllComments(int? maxResults = 10)
+		public async Task<IActionResult> GetAllComments()
 		{
 			try
 			{
-				return Ok(await repository.GetAllComentsAsync(maxResults));
+				return Ok(await repository.GetAllComentsAsync());
 			}
 			catch (Exception e)
 			{

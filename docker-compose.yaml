@@ -14,7 +14,7 @@ services:
       - NEWSCONSUMERAPI_ADDRESS=http://newsconsumerapi
     depends_on:
       - newsconsumerapi
-
+  
   newsconsumerapi:
     build: ./NewsConsumer/API
     networks:
@@ -25,7 +25,7 @@ services:
       - ASPNETCORE_NewsConsumerDatabase__ConnectionString=mongodb://mongo:27017
     depends_on:
       - mongo
-
+  
   analyzecommentsproxy:
     build: ./AnalyzeComments/Proxy
     ports:

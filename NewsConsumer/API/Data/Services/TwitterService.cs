@@ -12,7 +12,7 @@ namespace API.Data.Services
 		private readonly IConfiguration configuration;
 
 		private const string TWEETS_URL = "https://api.twitter.com/2/users/68693419/tweets?";
-		private const string TWEETS_COMMENTS_URL = "https://api.twitter.com/2/tweets/search/recent?query=Prefeitura de Curitiba?";
+		private const string TWEETS_COMMENTS_URL = "https://api.twitter.com/2/tweets/search/recent?query=Prefeitura de Curitiba OR @Curitiba_PMC";
 		public TwitterService(IHttpClientFactory httpClientFactory, IConfiguration configuration)
 		{
 			this.httpClientFactory = httpClientFactory;
@@ -55,7 +55,7 @@ namespace API.Data.Services
 
 			var url = TWEETS_COMMENTS_URL;
 			if (maxResults.HasValue)
-				url += $"max_results={maxResults}";
+				url += $"&max_results={maxResults}";
 
 			var httpRequestMessage = new HttpRequestMessage(HttpMethod.Get, url);
 

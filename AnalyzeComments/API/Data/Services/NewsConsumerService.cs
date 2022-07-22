@@ -15,12 +15,9 @@ namespace API.Data.Services
             this.configuration = configuration;
         }
 
-        public async Task<Comments?> GetComments(int? maxResults)
+        public async Task<List<Comments?>> GetComments()
         {
-            var url = configuration.GetValue<string>("NewsConsumerAPI");
-
-            if (maxResults.HasValue)
-				url += $"max_results={maxResults}";
+            var url = configuration.GetValue<string>("NewsConsumerAddress");
 
 			var httpRequestMessage = new HttpRequestMessage(HttpMethod.Get, url);
 
@@ -31,7 +28,7 @@ namespace API.Data.Services
 			{
 				var content = await httpResponseMessage.Content.ReadAsStringAsync();
 
-				var result = JsonConvert.DeserializeObject<Comments>(content);
+				var result = JsonConvert.DeserializeObject<List<Comments>>(content);
 
 				return result;
 			}
