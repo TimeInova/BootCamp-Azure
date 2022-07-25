@@ -8,6 +8,8 @@ services:
     build: ./NewsConsumer/Proxy
     ports:
       - 80:80
+    expose:
+      - "80"
     networks:
       - bootcamp_ici
     environment:
@@ -43,9 +45,9 @@ services:
       - bootcamp_ici
     environment:
       - ASPNETCORE_ENVIRONMENT=Production
-      - ASPNETCORE_AnalyzeCommentsDatabase__DatabaseName=AnalyzeComments
-      - ASPNETCORE_AnalyzeCommentsDatabase__ConnectionString=mongodb://mongo:27017
-      - ASPNETCORE_Integrations__NewsConsumerAddress=http://localhost/api/GetComments
+      - ASPNETCORE_ResultAnalyzeDatabase__DatabaseName=AnalyzeComments
+      - ASPNETCORE_ResultAnalyzeDatabase__ConnectionString=mongodb://mongo:27017
+      - ASPNETCORE_NewsConsumerAddress=http://newsconsumerapi/api/GetComments
     depends_on:
       - newsconsumerapi
       - mongo

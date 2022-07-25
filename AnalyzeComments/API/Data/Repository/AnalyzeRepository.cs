@@ -10,7 +10,7 @@ namespace API.Data.Repository
     {
 		private readonly IMongoCollection<ResultAnalyze> analyzeCollection;
 		
-		public AnalyzeRepository(IOptions<AnalyzeDbSettings> settings){
+		public AnalyzeRepository(IOptions<AnalyzeDbSettings> settings) {
 			MongoClientSettings settingsMongo = MongoClientSettings.FromUrl(new MongoUrl(settings.Value.ConnectionString));
 			settingsMongo.SslSettings = new SslSettings() { EnabledSslProtocols = SslProtocols.Tls12 };
 			var mongoClient = new MongoClient(settings.Value.ConnectionString);
