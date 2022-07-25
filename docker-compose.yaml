@@ -14,7 +14,7 @@ services:
       - NEWSCONSUMERAPI_ADDRESS=http://newsconsumerapi
     depends_on:
       - newsconsumerapi
-  
+
   newsconsumerapi:
     build: ./NewsConsumer/API
     networks:
@@ -47,6 +47,7 @@ services:
       - ASPNETCORE_AnalyzeCommentsDatabase__ConnectionString=mongodb://mongo:27017
       - ASPNETCORE_Integrations__NewsConsumerAddress=http://localhost/api/GetComments
     depends_on:
+      - newsconsumerapi
       - mongo
 
   mongo:
