@@ -22,7 +22,7 @@ namespace API.Controllers
 		}
 
         //Rota de solicitação de atualização das noticias
-        [HttpPost("UpdateNews")]
+        [HttpPost("ClippingNews")]
         public async Task<IActionResult> ClippingNews(int? maxResults = 10) 
         {
 			try
@@ -48,7 +48,7 @@ namespace API.Controllers
 		}
 
 		 //Rota de solicitação de atualização dos comentarios
-        [HttpPost("UpdateComments")]
+        [HttpPost("ClippingComments")]
 		public async Task<IActionResult> ClippingComments(int? maxResults = 50) 
         {
 			try
