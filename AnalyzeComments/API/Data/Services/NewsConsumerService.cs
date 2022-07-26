@@ -15,7 +15,7 @@ namespace API.Data.Services
             this.configuration = configuration;
         }
 
-        public async Task<List<Comments?>> GetComments()
+        public async Task<List<Comments>> GetComments()
         {
             var url = configuration.GetValue<string>("NewsConsumerAddress");
 
