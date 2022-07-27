@@ -11,14 +11,18 @@ namespace API.Controllers
         private readonly ILogger<AnalyzeController> logger;
         private readonly IAnalyzeRepository repository;
         private readonly INewsConsumerService newsConsumerService;
+        private readonly ISentimentAnalysis sentimentAnalysis;
 
         public AnalyzeController(ILogger<AnalyzeController> logger, 
             IAnalyzeRepository repository,
-            INewsConsumerService newsConsumerService)
+            INewsConsumerService newsConsumerService,
+            ISentimentAnalysis sentimentAnalysis
+            )
         {
             this.logger = logger;
             this.repository = repository;
             this.newsConsumerService = newsConsumerService;
+            this.sentimentAnalysis = sentimentAnalysis;
         }
 
         [HttpPost("UpdateAnalyzes")]
@@ -27,8 +31,8 @@ namespace API.Controllers
             try
             {
                 var comments = await newsConsumerService.GetComments();
-                //var resultAnalyze = AQUI A INTEGRAÇÃO COM A API DE ANALISE DA AZURE
-                //await repository.SaveResultAnalyze(resultAnalyze);
+                var resultAnalyze = await sentimentAnalysis.ExecuteAnalyzeAsync(comments);
+                await repository.SaveResultAnalyze(resultAnalyze);
 
                 return Ok(comments);   
             }

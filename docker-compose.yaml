@@ -48,6 +48,8 @@ services:
       - ASPNETCORE_ResultAnalyzeDatabase__DatabaseName=AnalyzeComments
       - ASPNETCORE_ResultAnalyzeDatabase__ConnectionString=mongodb://mongo:27017
       - ASPNETCORE_NewsConsumerAddress=http://newsconsumerapi/api/GetComments
+      - ASPNETCORE_AzureCognitiveServices__Endpoint=
+      - ASPNETCORE_AzureCognitiveServices__ApiKey=
     depends_on:
       - newsconsumerapi
       - mongo
