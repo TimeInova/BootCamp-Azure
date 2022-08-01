@@ -3,25 +3,31 @@ using Microsoft.Extensions.Options;
 using System.Security.Authentication;
 using API.Data.Interfaces;
 using Azure.AI.TextAnalytics;
+using API.Models;
 
 namespace API.Data.Repository
 {
     public class AnalyzeRepository : IAnalyzeRepository
     {
-		private readonly IMongoCollection<AnalyzeSentimentResultCollection> analyzeCollection;
+		private readonly IMongoCollection<ResultAnalyze> analyzeCollection;
 		
 		public AnalyzeRepository(IOptions<AnalyzeDbSettings> settings) {
 			MongoClientSettings settingsMongo = MongoClientSettings.FromUrl(new MongoUrl(settings.Value.ConnectionString));
 			settingsMongo.SslSettings = new SslSettings() { EnabledSslProtocols = SslProtocols.Tls12 };
 			var mongoClient = new MongoClient(settings.Value.ConnectionString);
 			var mongoDatabase = mongoClient.GetDatabase(settings.Value.DatabaseName);
-			analyzeCollection = mongoDatabase.GetCollection<AnalyzeSentimentResultCollection>("ResultAnalyze");
+			analyzeCollection = mongoDatabase.GetCollection<ResultAnalyze>("ResultAnalyze");
 		}
 
-        public async Task SaveResultAnalyze(AnalyzeSentimentResultCollection analyze) =>
-            await analyzeCollection.InsertOneAsync(analyze);
+        public async Task SaveResultAnalyze(AnalyzeSentimentResultCollection analyze) 
+        {
+            ResultAnalyze resultAnalyze = new ResultAnalyze(analyze);
 
-        public async Task<List<AnalyzeSentimentResultCollection>> GetAllAnalyzesAsync(int? maxResults)
+            await analyzeCollection.InsertOneAsync(resultAnalyze);
+
+        }
+        
+        public async Task<List<ResultAnalyze>> GetAllAnalyzesAsync(int? maxResults)
         {
             var query = analyzeCollection.Find(_ => true);
 
