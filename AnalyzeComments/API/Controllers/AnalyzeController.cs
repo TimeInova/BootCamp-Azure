@@ -33,7 +33,7 @@ namespace API.Controllers
                 var resultAnalyze = await sentimentAnalysis.ExecuteAnalyzeAsync(comments);
                 await repository.SaveResultAnalyze(resultAnalyze);
 
-                return Ok(comments);   
+                return Ok(resultAnalyze);   
             }
             catch (Exception e)
             {
