@@ -2,7 +2,6 @@ using Newtonsoft.Json;
 using API.Data.Interfaces;
 using API.DTO;
 using Azure.AI.TextAnalytics;
-using Microsoft.Extensions.Options;
 using Azure;
 
 namespace API.Data.Services
@@ -10,17 +9,18 @@ namespace API.Data.Services
     public class SentimentAnalysis : ISentimentAnalysis
     {
         private readonly IHttpClientFactory httpClientFactory;
-		private readonly IOptions<IntegrationSettings> settings;
+		private readonly IConfiguration configuration;
 
-        public SentimentAnalysis(IHttpClientFactory httpClientFactory, IOptions<IntegrationSettings> settings)
+        public SentimentAnalysis(IHttpClientFactory httpClientFactory, IConfiguration configuration)
         {
             this.httpClientFactory = httpClientFactory;
-            this.settings = settings;
-            
+            this.configuration = configuration;            
         }
         public async Task<AnalyzeSentimentResultCollection> ExecuteAnalyzeAsync(List<Comments> comments)
         {   
-            var client = new TextAnalyticsClient(new Uri(settings.Value.Endpoint), new AzureKeyCredential(settings.Value.ApiKey));
+            var endpoint = configuration.GetValue<string>("AzureCognitiveServices:Endpoint");
+            var apikey = configuration.GetValue<string>("AzureCognitiveServices:ApiKey");
+            var client = new TextAnalyticsClient(new Uri(endpoint), new AzureKeyCredential(apikey));
 
             var documents = new List<string>();
             

@@ -16,8 +16,10 @@ builder.Services.Configure<AnalyzeDbSettings>(builder.Configuration.GetSection("
 
 builder.Services.AddSingleton<AnalyzeRepository>();
 builder.Services.AddSingleton<NewsConsumerService>();
+builder.Services.AddSingleton<SentimentAnalysis>();
 builder.Services.AddScoped<IAnalyzeRepository, AnalyzeRepository>();
 builder.Services.AddScoped<INewsConsumerService, NewsConsumerService>();
+builder.Services.AddScoped<ISentimentAnalysis, SentimentAnalysis>();
 
 var app = builder.Build();
 
