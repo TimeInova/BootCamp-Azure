@@ -54,7 +54,7 @@ A solução proposta para este desafio consiste em criar um clipping das notíci
 | 3. | ENI03 - Linguagem | Não está previsto desenvolvimento do sistema em línguas que não o Português do Brasil. |
 | 4. | ENI04 - Mobile  | Não está previsto desenvolvimento de aplicação mobile. |
 
-###3.4 Premissas e Restrições
+### 3.4 Premissas e Restrições
 
 | *Nº*  |  *Item*  |  *Descrição* |
 | ------------------- | ------------------- | ------------------- |
@@ -65,9 +65,9 @@ A solução proposta para este desafio consiste em criar um clipping das notíci
 
 | *Nº*  |  *Requisito*  |  *Descrição* |
 | ------------------- | ------------------- | ------------------- |
-| 1. | REQ001 - Manter API Gateway | Requisito Responsável por desenvolver a API responsável pelo gerenciamento de integrações com outras APIs |
-| 2. | REQ002 - Manter API do Twitter | Requisito Responsável por desenvolver a integração responsável pela extração de dados do Twitter |
-| 3. | REQ003 - Manter API Cognitive Services | Requisito Responsável por desenvolver a integração responsável pela análise de sentimentos da aplicação |
+| 1. | REQ001 - Manter API Gateway |  |
+| 2. | REQ002 - Manter API do Twitter |  |
+| 3. | REQ003 - Manter API Cognitive Services |  |
 
 ## 4.2 Requisitos Não Funcionais
 
@@ -77,6 +77,13 @@ A solução proposta para este desafio consiste em criar um clipping das notíci
 | Homologação | A implantação será realizada no ambiente Azure de forma incrementa |
 | Plataforma Tecnológica | Para desenvolvimento da interface do sistema: Framework ICI .NET 6 / Azure; |
 | Testes | Os testes serão realizados em paralelo com o desenvolvimento das funcionalidades, sendo estes primordiais para o aceite do desenvolvimento. |
+
+# Desenvolvedores
+ - Álvaro José Baranoski
+ - Karine Trevisan
+ - Lennon Alberto dos Santos
+ - Paulo Rebouças 
+ - Thales Gomes
 
 # BootCamp-Azure
 Repositório dedicado ao BootCamp do ICI
