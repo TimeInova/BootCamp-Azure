@@ -65,9 +65,9 @@ A solução proposta para este desafio consiste em criar um clipping das notíci
 
 | *Nº*  |  *Requisito*  |  *Descrição* |
 | ------------------- | ------------------- | ------------------- |
-| 1. | REQ001 - Manter API Gateway |  |
-| 2. | REQ002 - Manter API do Twitter |  |
-| 3. | REQ003 - Manter API Cognitive Services |  |
+| 1. | REQ001 - Manter API Gateway | Requisito Responsável por desenvolver a API responsável pelo gerenciamento de integrações com outras APIs |
+| 2. | REQ002 - Manter API do Twitter | Requisito Responsável por desenvolver a integração responsável pela extração de dados do Twitter |
+| 3. | REQ003 - Manter API Cognitive Services | Requisito Responsável por desenvolver a integração responsável pela análise de sentimentos da aplicação |
 
 ## 4.2 Requisitos Não Funcionais
 
