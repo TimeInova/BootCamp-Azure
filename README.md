@@ -63,11 +63,11 @@ A solução proposta para este desafio consiste em criar um clipping das notíci
 ## 4. Requisitos
 ### 4.1 Requisitos Funcionais
 
-| *Nº*  |  *Requisito*  |  *Descrição* |
-| ------------------- | ------------------- | ------------------- |
-| 1. | REQ001 - Manter API Gateway |  |
-| 2. | REQ002 - Manter API do Twitter |  |
-| 3. | REQ003 - Manter API Cognitive Services |  |
+| *Nº*  |  *Requisito*  | 
+| ------------------- | ------------------- | 
+| 1. | REQ001 - Manter API Gateway | 
+| 2. | REQ002 - Manter API do Twitter | 
+| 3. | REQ003 - Manter API Cognitive Services | 
 
 ## 4.2 Requisitos Não Funcionais
 
